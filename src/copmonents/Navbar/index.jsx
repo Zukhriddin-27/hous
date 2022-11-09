@@ -2,6 +2,7 @@ import React from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import { Content, Container, Wrapper, Section, Logo, Link } from './style'
 import { navbar } from '../../utils/navbar'
+import Filter from '../Filter'
 import Button from '../Generic/Button'
 
 const Home = () => {
@@ -37,6 +38,7 @@ const Home = () => {
           </Section>
         </Wrapper>
       </Content>
+      <Filter />
       <Outlet />
     </Container>
   )
