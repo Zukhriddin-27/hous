@@ -2,6 +2,7 @@ import React from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import { Content, Container, Wrapper, Section, Logo, Link } from './style'
 import { navbar } from '../../utils/navbar'
+import Button from '../Generic/Button'
 
 const Home = () => {
   const navigate = useNavigate()
@@ -14,21 +15,25 @@ const Home = () => {
             <h3>Houzing</h3>
           </Section>
           <Section>
-            {navbar.map(({ path, title }, index) => {
+            {navbar.map(({ path, title, hidden }, index) => {
               return (
-                <Link
-                  className={({ isActive }) => isActive && 'active'}
-                  key={index}
-                  to={path}
-                >
-                  {title}
-                </Link>
+                !hidden && (
+                  <Link
+                    className={({ isActive }) => isActive && 'active'}
+                    key={index}
+                    to={path}
+                  >
+                    {title}
+                  </Link>
+                )
               )
             })}
           </Section>
 
           <Section>
-            <button>Sign in</button>
+            <Button onClick={() => navigate('/signin')} type='dark'>
+              Sign in
+            </Button>
           </Section>
         </Wrapper>
       </Content>
