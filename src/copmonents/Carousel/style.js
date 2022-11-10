@@ -24,6 +24,8 @@ const Arrow = styled(arrow)`
 `
 const Img = styled.img`
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 `
 const Blur = styled.div`
   position: absolute;
