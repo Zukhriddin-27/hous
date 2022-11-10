@@ -1,11 +1,10 @@
 import React from 'react'
-import { Input } from '../Generic'
+import Carousel from '../Carousel'
 import { Container } from './style'
 const Home = () => {
   return (
     <Container>
-      <h1>Home page</h1>
-      <Input placeholder={'test'} width={'200px'} />
+      <Carousel />
     </Container>
   )
 }
