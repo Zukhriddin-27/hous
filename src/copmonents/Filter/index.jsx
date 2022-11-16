@@ -71,9 +71,6 @@ export const Filter = () => {
         <Input ref={minPriceRef} placeholder='Min Price' />
         <Input ref={maxPriceRef} placeholder='Max Price' />
       </Section>
-      <h1 className='subTitle'>Footer</h1>
-
-      <Section></Section>
     </MenuWrapper>
   )
   return (

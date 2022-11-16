@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   margin: auto;
   width: 100%;
-  /* max-width: 1440px; */
+  max-width: 1440px;
   color: white;
   padding: var(--padding);
   height: 64px;

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { ReactComponent as arrow } from '../../assets/icons/arrow.svg'
 const Container = styled.div`
-  height: auto; //571px
+  height: fit-content; //571px
   position: relative;
 `
 

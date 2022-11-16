@@ -1,12 +1,16 @@
 import styled from 'styled-components'
 
 const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  /* flex-wrap: wrap; */
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
   padding: var(--padding);
-  gap: 20px;
+  grid-gap: 20px;
   padding: var(--padding);
-  justify-content: space-between;
+  width: 100%;
+  max-width: 1440px;
+  margin: auto;
+  justify-content: center;
 `
 
 export { Container }
