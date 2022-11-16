@@ -1,8 +1,16 @@
 import React, { useRef } from 'react'
 import { Dropdown } from 'antd'
-import { Input, Button } from '../Generic'
-import { Container, Icons, MenuWrapper, Section } from './style'
-const Filter = () => {
+import { Button } from '../Generic'
+import { Container, Icons, MenuWrapper, Section, Input } from './style'
+import { uzeReplace } from '../../hooks/useReplace'
+import { useSearch } from '../../hooks/useSearch'
+import { useNavigate, useLocation } from 'react-router-dom'
+
+export const Filter = () => {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const query = useSearch()
+
   const countryRef = useRef()
   const regionRef = useRef()
   const cityRef = useRef()
@@ -13,15 +21,42 @@ const Filter = () => {
   const minPriceRef = useRef()
   const maxPriceRef = useRef()
 
+  const handleChange = ({ target: { name, value } }) => {
+    navigate(`${location?.pathname}${uzeReplace(name, value)}`)
+  }
+
   const menu = (
     <MenuWrapper>
       <h1 className='subTitle'>Address</h1>
-
       <Section>
-        <Input ref={countryRef} placeholder='Country' />
-        <Input ref={regionRef} placeholder='Region' />
-        <Input ref={cityRef} placeholder='City' />
-        <Input ref={zipRef} placeholder='Zip Code' />
+        <Input
+          defaultValue={query.get('country')}
+          onChange={handleChange}
+          ref={countryRef}
+          name='country'
+          placeholder='Country'
+        />
+        <Input
+          defaultValue={query.get('region')}
+          onChange={handleChange}
+          ref={regionRef}
+          name='region'
+          placeholder='Region'
+        />
+        <Input
+          defaultValue={query.get('city')}
+          onChange={handleChange}
+          ref={cityRef}
+          name='city'
+          placeholder='City'
+        />
+        <Input
+          defaultValue={query.get('zip_code')}
+          onChange={handleChange}
+          name='zip_code'
+          ref={zipRef}
+          placeholder='Zip Code'
+        />
       </Section>
       <h1 className='subTitle'>Apartment info</h1>
 
@@ -41,17 +76,18 @@ const Filter = () => {
       <Section></Section>
     </MenuWrapper>
   )
-
   return (
     <Container>
       <Input
         icon={<Icons.Houses />}
         placeholder={'Enter an address, neighborhood, city or ZIP code'}
       />
+
       <Dropdown
         overlay={menu}
         placement='bottomRight'
         arrow={{ pointAtCenter: true }}
+        trigger='click'
       >
         <div>
           <Button type={'light'}>

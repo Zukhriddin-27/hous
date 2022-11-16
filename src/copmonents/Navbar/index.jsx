@@ -13,7 +13,7 @@ const Home = () => {
         <Wrapper>
           <Section onClick={() => navigate('/home')} logo>
             <Logo />
-            <h3>Houzing</h3>
+            <h3 style={{ color: '#fff', 'margin-bottom': '0' }}>Houzing</h3>
           </Section>
           <Section>
             {navbar.map(({ path, title, hidden }, index) => {

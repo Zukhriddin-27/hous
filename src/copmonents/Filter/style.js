@@ -1,7 +1,7 @@
 import styled from 'styled-components'
+import { ReactComponent as houses } from '../../assets/icons/houses.svg'
 import { ReactComponent as filter } from '../../assets/icons/setting.svg'
 import { ReactComponent as search } from '../../assets/icons/search.svg'
-import { ReactComponent as houses } from '../../assets/icons/houses.svg'
 
 const Container = styled.div`
   display: flex;
@@ -9,6 +9,22 @@ const Container = styled.div`
   padding-top: 10px;
   padding-bottom: 10px;
   gap: 20px;
+  width: 100%;
+  max-width: 1440px;
+  margin: auto;
+`
+const Input = styled.input`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 120px;
+  font-size: 14px;
+  border-radius: 2px;
+  height: ${({ height }) => (height ? `${height}px` : `44px`)};
+  width: ${({ width }) => (width ? `${width}px` : `100%`)};
+  padding-left: ${({ icon }) => (icon ? '35px' : '20px')};
+  border: 1px solid #e6e9ec;
+  outline: none;
 `
 const Icons = styled.div``
 
@@ -24,13 +40,14 @@ Icons.Houses = styled(houses)`
 
 const MenuWrapper = styled.div`
   padding: 30px;
-  background: #fff;
+  background: white;
   border: 1px solid #e6e9ec;
 `
-
 const Section = styled.div`
-  margin-bottom: 20px;
   display: flex;
+  justify-content: start;
   gap: 20px;
+  margin-bottom: 20px;
 `
-export { Container, Icons, MenuWrapper, Section }
+
+export { Container, Icons, MenuWrapper, Section, Input }

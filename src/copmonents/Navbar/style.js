@@ -26,6 +26,7 @@ const Wrapper = styled.div`
 const Section = styled.div`
   display: flex;
   align-items: center;
+
   cursor: ${({ logo }) => logo && 'pointer'};
 
   .active {
@@ -44,4 +45,5 @@ const Link = styled(NavLink)`
   color: #fff;
   padding: 0 32px;
 `
+
 export { Container, Wrapper, Content, Section, Logo, Link }
