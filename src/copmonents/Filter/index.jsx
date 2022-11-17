@@ -15,7 +15,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 
 export const Filter = () => {
   const [data, setData] = useState([])
-  const [value, setValue] = useState('Category')
+  const [value, setValue] = useState('Select Category')
   const { REACT_APP_BASE_URL: url } = process.env
 
   const navigate = useNavigate()
@@ -34,6 +34,7 @@ export const Filter = () => {
   const handleChange = ({ target: { name, value } }) => {
     navigate(`${location?.pathname}${uzeReplace(name, value)}`)
   }
+
   useEffect(() => {
     fetch(`${url}/categories/list`)
       .then((res) => res.json())
@@ -42,11 +43,12 @@ export const Filter = () => {
       })
     //eslint-disable-next-line
   }, [])
+
   useEffect(() => {
     let [d] = data?.filter((ctg) => ctg.id === Number(query.get('category_id')))
-
+    console.log(d)
     d?.name && setValue(d?.name)
-    !query.get('select_id') && setValue('Select Category')
+    // !query.get('select_id') && setValue('Select Category')
     //eslint-disable-next-line
   }, [location?.search, data])
 
@@ -110,8 +112,8 @@ export const Filter = () => {
           <SelectAntd.Option value={''}>Selecet Category</SelectAntd.Option>
           {data.map((value) => {
             return (
-              <SelectAntd.Option value={value.id}>
-                {value.name}
+              <SelectAntd.Option value={value?.id} key={value.id}>
+                {value?.name}
               </SelectAntd.Option>
             )
           })}
