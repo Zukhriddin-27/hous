@@ -15,6 +15,7 @@ const Properties = () => {
         setData(res.data || [])
       })
   }, [search])
+  console.log(data, 'data')
 
   return (
     <Container>

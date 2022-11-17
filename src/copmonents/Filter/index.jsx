@@ -1,12 +1,23 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Dropdown } from 'antd'
 import { Button } from '../Generic'
-import { Container, Icons, MenuWrapper, Section, Input } from './style'
+import {
+  Container,
+  Icons,
+  MenuWrapper,
+  Section,
+  Input,
+  SelectAntd,
+} from './style'
 import { uzeReplace } from '../../hooks/useReplace'
 import { useSearch } from '../../hooks/useSearch'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 export const Filter = () => {
+  const [data, setData] = useState([])
+  const [value, setValue] = useState('Category')
+  const { REACT_APP_BASE_URL: url } = process.env
+
   const navigate = useNavigate()
   const location = useLocation()
   const query = useSearch()
@@ -16,15 +27,35 @@ export const Filter = () => {
   const cityRef = useRef()
   const zipRef = useRef()
   const roomsRef = useRef()
-  const sizeRef = useRef()
-  const sortRef = useRef()
+
   const minPriceRef = useRef()
   const maxPriceRef = useRef()
 
   const handleChange = ({ target: { name, value } }) => {
     navigate(`${location?.pathname}${uzeReplace(name, value)}`)
   }
+  useEffect(() => {
+    fetch(`${url}/categories/list`)
+      .then((res) => res.json())
+      .then((res) => {
+        setData(res?.data || [])
+      })
+    //eslint-disable-next-line
+  }, [])
+  useEffect(() => {
+    let [d] = data?.filter((ctg) => ctg.id === Number(query.get('category_id')))
 
+    d?.name && setValue(d?.name)
+    !query.get('select_id') && setValue('Select Category')
+    //eslint-disable-next-line
+  }, [location?.search, data])
+
+  const onChangeCategory = (category_id) => {
+    navigate(`properties/${uzeReplace('category_id', category_id)}`)
+  }
+  const onChangeSort = (sort) => {
+    navigate(`properties/${uzeReplace('sort', sort)}`)
+  }
   const menu = (
     <MenuWrapper>
       <h1 className='subTitle'>Address</h1>
@@ -61,15 +92,45 @@ export const Filter = () => {
       <h1 className='subTitle'>Apartment info</h1>
 
       <Section>
-        <Input ref={roomsRef} placeholder='Rooms' />
-        <Input ref={sizeRef} placeholder='Size' />
-        <Input ref={sortRef} placeholder='Sort' />
+        <Input
+          onChange={handleChange}
+          name='room'
+          ref={roomsRef}
+          placeholder='Rooms'
+        />
+        <SelectAntd
+          defaultValue={query.get('sort') || 'Selecet Sort'}
+          onChange={onChangeSort}
+        >
+          <SelectAntd.Option value={''}>Selecet Sort</SelectAntd.Option>
+          <SelectAntd.Option value={'desc'}>Kamayuvchi</SelectAntd.Option>
+          <SelectAntd.Option value={'asc'}>O'suvchi</SelectAntd.Option>
+        </SelectAntd>
+        <SelectAntd defaultValue={value} onChange={onChangeCategory}>
+          <SelectAntd.Option value={''}>Selecet Category</SelectAntd.Option>
+          {data.map((value) => {
+            return (
+              <SelectAntd.Option value={value.id}>
+                {value.name}
+              </SelectAntd.Option>
+            )
+          })}
+        </SelectAntd>
       </Section>
       <h1 className='subTitle'>Price</h1>
-
       <Section>
-        <Input ref={minPriceRef} placeholder='Min Price' />
-        <Input ref={maxPriceRef} placeholder='Max Price' />
+        <Input
+          onChange={handleChange}
+          name='min_price'
+          ref={minPriceRef}
+          placeholder='Min Price'
+        />
+        <Input
+          onChange={handleChange}
+          name='max_price'
+          ref={maxPriceRef}
+          placeholder='Max Price'
+        />
       </Section>
     </MenuWrapper>
   )
@@ -79,7 +140,6 @@ export const Filter = () => {
         icon={<Icons.Houses />}
         placeholder={'Enter an address, neighborhood, city or ZIP code'}
       />
-
       <Dropdown
         overlay={menu}
         placement='bottomRight'
@@ -92,7 +152,6 @@ export const Filter = () => {
           </Button>
         </div>
       </Dropdown>
-
       <Button>
         <Icons.Search /> Search
       </Button>

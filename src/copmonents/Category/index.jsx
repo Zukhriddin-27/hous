@@ -14,9 +14,9 @@ const Category = () => {
     className: 'center',
     centerMode: true,
     infinite: true,
-    centerPadding: '140px',
-    slidesToShow: 3,
-    speed: 500,
+    centerPadding: '290px',
+    slidesToShow: 2,
+    speed: 1000,
   }
   useEffect(() => {
     fetch(`${url}/categories/list`)
@@ -32,7 +32,7 @@ const Category = () => {
         {data.map((value) => {
           return (
             <CategoryCard
-              onClick={() => navigate(`/properties?category=${value.name}`)}
+              onClick={() => navigate(`/properties?category_id=${value.id}`)}
               data={value}
             />
           )
