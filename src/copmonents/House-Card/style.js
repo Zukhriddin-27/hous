@@ -13,11 +13,11 @@ const Container = styled.div`
   min-width: 343px;
 
   height: auto;
-  border: 1px solid #d1d0d0;
+  border: 1px solid #e6e9ec;
 
-  filter: drop-shadow(0px 20px 38px rgba(0, 0, 0, 0.06))
+  /* filter: drop-shadow(0px 20px 38px rgba(0, 0, 0, 0.06))
     drop-shadow(0px 7px 46px rgba(0, 0, 0, 0.06))
-    drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.06));
+    drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.06)); */
 `
 const Img = styled.img`
   width: 100%;

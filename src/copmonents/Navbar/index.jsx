@@ -5,6 +5,8 @@ import { navbar } from '../../utils/navbar'
 import Filter from '../Filter'
 import Button from '../Generic/Button'
 
+import Footer from '../Footer'
+
 const Home = () => {
   const navigate = useNavigate()
   return (
@@ -40,6 +42,7 @@ const Home = () => {
       </Content>
       <Filter />
       <Outlet />
+      <Footer />
     </Container>
   )
 }

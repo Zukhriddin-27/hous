@@ -46,7 +46,7 @@ export const Filter = () => {
 
   useEffect(() => {
     let [d] = data?.filter((ctg) => ctg.id === Number(query.get('category_id')))
-    console.log(d)
+
     d?.name && setValue(d?.name)
     // !query.get('select_id') && setValue('Select Category')
     //eslint-disable-next-line

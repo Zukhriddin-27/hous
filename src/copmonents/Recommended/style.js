@@ -11,8 +11,7 @@ const Container = styled.div`
 const Content = styled.div`
   display: block;
   text-align: center;
-  margin-top: 10px;
+
   margin-bottom: 32px;
 `
-
 export { Container, Content }
