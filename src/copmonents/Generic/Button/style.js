@@ -25,6 +25,11 @@ const getType = ({ type }) => {
       return { background: '#0061df', border: 'none', color: '#fff' }
   }
 }
+const getWidth = ({ width }) => {
+  if (!width) return '130px'
+  else if (`${width}`.includes('%')) return '100%'
+  else return `${width}px`
+}
 
 const Container = styled.button`
   display: flex;
@@ -34,7 +39,7 @@ const Container = styled.button`
   font-size: 14px;
   border-radius: 2px;
   height: ${({ height }) => (height ? `${height}px` : `44px`)};
-  width: ${({ width }) => (width ? `${width}px` : `130px`)};
+  width: ${getWidth};
 
   cursor: pointer;
   ${getType}

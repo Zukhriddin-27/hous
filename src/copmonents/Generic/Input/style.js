@@ -31,13 +31,20 @@ const Container = styled.input`
   justify-content: center;
   align-items: center;
   min-width: 120px;
-  font-size: 14px;
+
   border-radius: 2px;
+  font-size: ${({ fontSize }) => (fontSize ? `${fontSize}px` : '14px')};
   height: ${({ height }) => (height ? `${height}px` : `44px`)};
-  width: ${({ width }) => (width ? `${width}px` : `100%`)};
+  width: ${({ width }) => (width ? `${width}px` : '100%')};
   padding-left: ${({ icon }) => (icon ? '35px' : '20px')};
   border: 1px solid #e6e9ec;
   outline: none;
+  :focus {
+    border-bottom: 2px solid #0061df;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
   /* ${getType} */
 `
 const Wrapper = styled.div`
@@ -48,6 +55,8 @@ const Wrapper = styled.div`
 `
 const Icon = styled.div`
   position: absolute;
-  left: 10px;
+  transform: translate(-50%, -50%);
+  left: 20px;
+  top: 50%;
 `
 export { Container, Wrapper, Icon }

@@ -6,10 +6,10 @@ const Container = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
   padding: var(--padding);
   grid-gap: 20px;
-  padding: var(--padding);
   width: 100%;
   max-width: 1440px;
   margin: auto;
+  margin-bottom: 96px;
   justify-content: center;
 `
 
