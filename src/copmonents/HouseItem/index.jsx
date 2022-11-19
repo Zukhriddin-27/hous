@@ -22,6 +22,7 @@ const HouseItem = () => {
         setData(res?.data || {})
       })
   }, [params?.id])
+  console.log(data)
 
   return <Container>HouseItem</Container>
 }
