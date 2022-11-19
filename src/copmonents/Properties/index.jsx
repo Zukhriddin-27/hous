@@ -2,25 +2,25 @@ import React, { useEffect, useState } from 'react'
 import { Container } from './style'
 import HouseCard from '../House-Card'
 import { useNavigate, useLocation } from 'react-router-dom'
-import useRequest from '../../hooks/useRequest'
-// const { REACT_APP_BASE_URL: url } = process.env
+// import useRequest from '../../hooks/useRequest'
+const { REACT_APP_BASE_URL: url } = process.env
 
 const Properties = () => {
   const [data, setData] = useState([])
   const { search } = useLocation()
   const navigate = useNavigate()
-  const request = useRequest()
+  // const request = useRequest()
 
   useEffect(() => {
-    // fetch(`${url}/houses/list${search}`)
-    //   .then((res) => res.json())
-    //   .then((res) => {
-    //     setData(res.data || [])
-    //   })
+    fetch(`${url}/houses/list${search}`)
+      .then((res) => res.json())
+      .then((res) => {
+        setData(res.data || [])
+      })
 
-    request({ url: `/houses/list${search}` }).then((res) =>
-      setData(res?.data || [])
-    )
+    // request({ url: `/houses/list${search}` }).then((res) =>
+    //   setData(res?.data || [])
+    // )
   }, [search])
   const onSelect = (id) => {
     navigate(`/properties/${id}`)
