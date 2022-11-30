@@ -20,7 +20,6 @@ import Maps from '../Maps'
 
 const HouseItem = () => {
   const [data, setData] = useState({})
-  const [value, onChange] = useState(new Date())
   const params = useParams()
 
   useEffect(() => {
