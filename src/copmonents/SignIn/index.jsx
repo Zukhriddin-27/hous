@@ -4,7 +4,7 @@ import { Content } from './style'
 import useRequest from '../../hooks/useRequest'
 import { useNavigate } from 'react-router-dom'
 import { message } from 'antd'
-const Signin = () => {
+export const SignIn = () => {
   const request = useRequest()
   const [body, setBody] = useState({})
 
@@ -58,4 +58,4 @@ const Signin = () => {
   )
 }
 
-export default Signin
+export default SignIn
