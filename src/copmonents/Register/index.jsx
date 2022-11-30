@@ -1,8 +1,8 @@
 import React from 'react'
 import { Container } from './style'
 import { Tabs } from 'antd'
-import Signup from '../Signup/index.jsx'
-import Signin from '../Signin/index.jsx'
+import Signup from '../Signup'
+import SignIn from '../SignIn'
 const Register = () => {
   return (
     <Container>
@@ -13,7 +13,7 @@ const Register = () => {
           {
             label: `Sign In`,
             key: '1',
-            children: <Signin />,
+            children: <SignIn />,
           },
           {
             label: `Sign Up`,
