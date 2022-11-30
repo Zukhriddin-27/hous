@@ -41,11 +41,10 @@ const Category = () => {
       >
         {data.map((value) => {
           return (
-            <SwiperSlide>
+            <SwiperSlide key={value.id}>
               <CategoryCard
                 onClick={() => navigate(`/properties?category_id=${value.id}`)}
                 data={value}
-                key={value.id}
               />
             </SwiperSlide>
           )

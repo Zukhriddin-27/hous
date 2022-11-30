@@ -1,8 +1,8 @@
 import React from 'react'
 import { Container } from './style'
 import { Tabs } from 'antd'
-import Signup from '../Signup'
-import Signin from '../Signin'
+import Signup from '../Signup/index.jsx'
+import Signin from '../Signin/index.jsx'
 const Register = () => {
   return (
     <Container>

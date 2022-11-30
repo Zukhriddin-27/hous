@@ -58,10 +58,9 @@ const Recommended = () => {
       >
         {data.map((value) => {
           return (
-            <SwiperSlide>
+            <SwiperSlide key={value.id}>
               <HouseCard
                 data={value}
-                key={value.id}
                 onClick={() => navigate(`/properties/${value?.id}`)}
               />
             </SwiperSlide>
