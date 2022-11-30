@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Content } from './style'
 import HouseCard from '../House-Card'
-import Slider from 'react-slick'
+import { useNavigate } from 'react-router-dom'
+import { Swiper, SwiperSlide } from 'swiper/react'
+// Import Swiper styles
+import 'swiper/css'
+import 'swiper/css/free-mode'
+import 'swiper/css/pagination'
+import './style.css'
+// import required modules
+import { Autoplay, FreeMode, Navigation } from 'swiper'
 
 const { REACT_APP_BASE_URL: url } = process.env
 
 const Recommended = () => {
   const [data, setData] = useState([])
-  const settings = {
-    dots: true,
-    className: 'center',
-    centerMode: true,
-    infinite: true,
-    centerPadding: 0,
-    slidesToShow: 3,
-    speed: 1000,
-  }
+  const navigate = useNavigate()
+
   useEffect(() => {
     fetch(`${url}/houses/list`)
       .then((res) => res.json())
@@ -23,6 +24,7 @@ const Recommended = () => {
         setData(res.data || [])
       })
   }, [])
+
   return (
     <Container>
       <Content>
@@ -31,11 +33,41 @@ const Recommended = () => {
           Mulla quis curabitur velit volutpat auctor bibendum consectetur sit
         </h1>
       </Content>
-      <Slider {...settings}>
+      <Swiper
+        freeMode={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        breakpoints={{
+          640: {
+            slidesPerView: 1,
+            spaceBetween: 5,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 5,
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 5,
+          },
+        }}
+        modules={[Autoplay, FreeMode, Navigation]}
+        className='mySwiper'
+      >
         {data.map((value) => {
-          return <HouseCard data={value} key={value.id} />
+          return (
+            <SwiperSlide>
+              <HouseCard
+                data={value}
+                key={value.id}
+                onClick={() => navigate(`/properties/${value?.id}`)}
+              />
+            </SwiperSlide>
+          )
         })}
-      </Slider>
+      </Swiper>
     </Container>
   )
 }

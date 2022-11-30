@@ -72,7 +72,7 @@ const Footer = () => {
       <Copyright>
         <Section onClick={() => navigate('/home')} logo>
           <Logo />
-          <h3 style={{ color: '#fff', 'margin-bottom': '0' }}>Houzing</h3>
+          <h3 style={{ color: '#fff', marginBottom: '0' }}>Houzing</h3>
         </Section>
         <Section>Copyright © 2021 CreativeLayers. All Right Reserved.</Section>
       </Copyright>

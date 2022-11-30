@@ -31,13 +31,17 @@ const Container = styled.input`
   justify-content: center;
   align-items: center;
   min-width: 120px;
-
+  /* text-transform: capitalize; */
   border-radius: 2px;
   font-size: ${({ fontSize }) => (fontSize ? `${fontSize}px` : '14px')};
   height: ${({ height }) => (height ? `${height}px` : `44px`)};
   width: ${({ width }) => (width ? `${width}px` : '100%')};
   padding-left: ${({ icon }) => (icon ? '35px' : '20px')};
-  border: 1px solid #e6e9ec;
+  margin-right: ${({ mr }) => (mr ? '36px' : `24px`)};
+  border-bottom: 1px solid #e6e9ec;
+  border-left: none;
+  border-right: none;
+  border-top: none;
   outline: none;
   :focus {
     border-bottom: 2px solid #0061df;

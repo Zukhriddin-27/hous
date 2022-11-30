@@ -8,21 +8,15 @@ import { ReactComponent as love } from '../../assets/icons/love.svg'
 import { ReactComponent as resize } from '../../assets/icons/resize.svg'
 
 const Container = styled.div`
-  width: auto;
-  max-width: 380px;
-  min-width: 343px;
+  width: 380px;
 
-  height: auto;
   border: 1px solid #e6e9ec;
-
-  /* filter: drop-shadow(0px 20px 38px rgba(0, 0, 0, 0.06))
-    drop-shadow(0px 7px 46px rgba(0, 0, 0, 0.06))
-    drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.06)); */
 `
 const Img = styled.img`
   width: 100%;
   max-height: 220px;
   min-height: 220px;
+  object-fit: cover;
 `
 const Content = styled.div`
   display: flex;
@@ -53,10 +47,13 @@ Icons.Love = styled(love)`
   width: 27px;
   height: 27px;
   padding: 6px;
-  background: #f6f8f9;
+  background: ${({ favourite }) => (favourite ? `#CC5040` : `#f6f8f9`)};
   border-radius: 50%;
   margin-left: 20px;
   cursor: pointer;
+  &path {
+    fill: ${({ favourite }) => favourite && '#fff'};
+  }
   :active {
     transform: scale(0.9);
   }

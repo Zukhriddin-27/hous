@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container } from './style'
+import { Container, Content, Wrapper } from './style'
 import HouseCard from '../House-Card'
 import { useNavigate, useLocation } from 'react-router-dom'
 // import useRequest from '../../hooks/useRequest'
@@ -24,22 +24,30 @@ const Properties = () => {
   }, [search])
   const onSelect = (id) => {
     navigate(`/properties/${id}`)
-    console.log(id)
   }
 
   return (
     <Container>
-      {data.map((value) => {
-        return (
-          <HouseCard
-            onClick={() => {
-              onSelect(value.id)
-            }}
-            data={value}
-            key={value.id}
-          />
-        )
-      })}
+      <Content>
+        <h1 className='title'>Properties</h1>
+        <h1 className='info'>
+          Mulla quis curabitur velit volutpat auctor bibendum consectetur sit
+        </h1>
+      </Content>
+
+      <Wrapper>
+        {data.map((value) => {
+          return (
+            <HouseCard
+              onClick={() => {
+                onSelect(value.id)
+              }}
+              data={value}
+              key={value.id}
+            />
+          )
+        })}
+      </Wrapper>
     </Container>
   )
 }

@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { Container, Content } from './style'
 import HouseCard from '../House-Card'
-import Slider from 'react-slick'
-
+import { useNavigate } from 'react-router-dom'
+import { Swiper, SwiperSlide } from 'swiper/react'
+// Import Swiper styles
+import 'swiper/css'
+import 'swiper/css/free-mode'
+import 'swiper/css/pagination'
+import './style.css'
+// import required modules
+import { FreeMode, Autoplay, Pagination } from 'swiper'
 const { REACT_APP_BASE_URL: url } = process.env
 
 const Recent = () => {
   const [data, setData] = useState([])
-  const settings = {
-    dots: true,
-    className: 'center',
-    centerMode: true,
-    infinite: true,
-    centerPadding: 0,
-    slidesToShow: 3,
-    speed: 1000,
-  }
+  const navigate = useNavigate()
+
   useEffect(() => {
     fetch(`${url}/houses/list`)
       .then((res) => res.json())
       .then((res) => {
-        setData(res.data || [])
+        setData(res?.data || [])
       })
   }, [])
   return (
@@ -31,11 +31,34 @@ const Recent = () => {
           Mulla quis curabitur velit volutpat auctor bibendum consectetur sit
         </h1>
       </Content>
-      <Slider {...settings}>
-        {data.map((value) => {
-          return <HouseCard data={value} key={value.id} />
-        })}
-      </Slider>
+      <>
+        <Swiper
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          slidesPerView={3}
+          spaceBetween={30}
+          freeMode={true}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[FreeMode, Autoplay, Pagination]}
+          className='mySwiper'
+        >
+          {data.map((value) => {
+            return (
+              <SwiperSlide>
+                <HouseCard
+                  data={value}
+                  key={value.id}
+                  onClick={() => navigate(`/properties/${value?.id}`)}
+                />
+              </SwiperSlide>
+            )
+          })}
+        </Swiper>
+      </>
     </Container>
   )
 }

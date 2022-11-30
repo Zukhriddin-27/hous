@@ -6,17 +6,22 @@ import './index.css'
 import Root from './root'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import 'swiper/css/bundle'
 
 import { BrowserRouter } from 'react-router-dom'
+import { QueryClientProvider, QueryClient } from 'react-query'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
+const queryClient = new QueryClient()
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <RootContext>
-        <Root />
-      </RootContext>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <RootContext>
+          <Root />
+        </RootContext>
+      </BrowserRouter>
+    </QueryClientProvider>
   </React.StrictMode>
 )

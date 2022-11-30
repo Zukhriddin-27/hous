@@ -45,5 +45,27 @@ const Link = styled(NavLink)`
   color: #fff;
   padding: 0 32px;
 `
+const Menu = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 16px;
+  gap: 16px;
+  width: 177px;
 
-export { Container, Wrapper, Content, Section, Logo, Link }
+  background: #ffffff;
+  box-shadow: 0px 20px 38px rgba(0, 0, 0, 0.06),
+    0px 7px 46px rgba(0, 0, 0, 0.06), 0px 8px 15px rgba(0, 0, 0, 0.06);
+`
+Menu.Items = styled.div`
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height, or 143% */
+
+  color: #000000;
+`
+
+export { Container, Wrapper, Content, Section, Logo, Link, Menu }
