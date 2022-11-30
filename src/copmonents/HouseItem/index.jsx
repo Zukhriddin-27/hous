@@ -108,16 +108,19 @@ const HouseItem = () => {
             <ContentItems>
               <Icons.Download />
               <div className='info'>123documenrs.pdf</div>
+              {/* eslint-disable-next-line */}
               <a href='#'>Download</a>
             </ContentItems>
             <ContentItems>
               <Icons.Download />
               <div className='info'>123documenrs.pdf</div>
+              {/* eslint-disable-next-line */}
               <a href='#'>Download</a>
             </ContentItems>{' '}
             <ContentItems>
               <Icons.Download />
               <div className='info'>123documenrs.pdf</div>
+              {/* eslint-disable-next-line */}
               <a href='#'>Download</a>
             </ContentItems>
           </Section>
